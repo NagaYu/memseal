@@ -58,7 +58,7 @@ utility-side, and their causes are stated precisely (not hand-waved):
   non-surfacings where even the raw C0 baseline (no defense) did not reproduce stored content.
 - **Quarantine precision 0.738** comes from 16 false positives: **4** are W1 (all inside **M2 attack**
   cases, i.e. legitimate writes embedded in an attack), and **12** are `policy_refused` records
-  (cross-principal M2… writes ×8 and 4 clean) counted under the harness's rejected accounting.
+  (cross-principal M7 writes ×8 and 4 clean) counted under the harness's rejected accounting.
   **W1 produced zero false positives on clean cases.**
 
 Full detail, including an audit Errata that corrects earlier attribution wording, is in

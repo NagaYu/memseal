@@ -81,11 +81,13 @@ unchanged:
 | clean retention ≥ 0.80 | 0.444 | ≥0.80 | FAIL |
 | quarantine precision ≥ 0.75 | 0.738 | ≥0.75 | FAIL |
 
-**GATE 2 = FAIL** (recorded). The two failures are utility-side: clean retention
-0.444 is **identical across C0–C4** (MemSeal does not degrade it) and is confounded
-by case-sensitive matching of v2's prose `should_surface` markers plus some retrieval
-misses — not a MemSeal effect (no case-insensitive match applied post-hoc); precision
-0.738 is a real near-miss from W1 over-blocking imperative-looking legitimate clean
-writes (fp=16). Security is strong and real: injection 0.775→0.20, leak C0 22 → C2+ 0
-(M8 sealed by Fix 1, M7 by W3), identifier-subset delayed-use C0 0.219 → C3 0.0.
+**GATE 2 = FAIL** (recorded). The two failures are utility-side. Clean retention
+0.444 on an 18-marker denominator, identical across C0–C4 (8/18) — condition-neutral,
+not caused by MemSeal; case-normalization recovers only 1 of 10 misses (ceiling 0.556);
+the rest are genuine non-surfacing by the base model. Quarantine precision
+0.738: of the 16 quarantine false positives, 4 are W1 (all on legitimate writes inside
+M2 attack cases) and 12 are policy_refused (M7 cross-principal ×8 + clean ×4, per D-34
+rejected accounting). W1 false positives on clean cases = 0. Security is strong and
+real: injection 0.775→0.20, leak C0 22 → C2+ 0 (M8 sealed by Fix 1, M7 by W3),
+identifier-subset delayed-use C0 0.219 → C3 0.0.
 See `reports/phase2-regate.md`, `reports/phase2_regate_scores.json`. **Audit Errata** in phase2-regate.md corrects the precision-FP attribution (clean W1 FP = 0; 12/16 FP are D-34 rejected), the clean-retention framing (small 18-marker sample, condition-neutral, not a matching artifact), and a recall typo (0.46 → 0.5625).
