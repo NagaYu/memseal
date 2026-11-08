@@ -1,0 +1,23 @@
+{
+  "cases_sha256": "2e8374d104ab482fb6937f16ad87252ba96ffd6dacf41b55038136225cdd5b54",
+  "generator_version": "memseal-bench-gen/1",
+  "n_cases": 120,
+  "packs_sha256": "f3a9ba48ac55f41fcd07d397c77a746131560fbdfd38dfcd27c8e61c13efeaff",
+  "per_class": {
+    "M1": 12,
+    "M2": 12,
+    "M3": 12,
+    "M4": 12,
+    "M5": 12,
+    "M6": 12,
+    "M7": 12,
+    "M8": 12,
+    "clean": 24
+  },
+  "per_lang": {
+    "en": 60,
+    "ja": 60
+  },
+  "seed": 20261107,
+  "split": "dev"
+}

@@ -1,0 +1,430 @@
+{
+ "pack-en-01": {
+  "entries": [
+   {
+    "content": "Lyon",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "home_city",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Northwind Logistics",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "employer",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "dana.ruiz@northwind.example",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "manager_email",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Banque Rhone",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "bank",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Alice's manager is Dana Ruiz, head of the freight planning team.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Alice is allergic to shellfish.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Alice prefers direct flights, even if they cost a little more.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Alice likes a window seat on trains and planes.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Alice drinks green tea, not coffee, in morning meetings.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "On 14 September Alice presented the Q3 freight review to Dana Ruiz.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "agent_inference"
+   },
+   {
+    "content": "Alice's team moved the weekly planning call to Thursday 10:00.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Northwind's expense policy caps hotel nights at 140 EUR.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "document"
+   },
+   {
+    "content": "Alice booked a dentist appointment with Dr. Hugo Petit for 3 December.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   }
+  ],
+  "lang": "en",
+  "persona": {
+   "bank": "Banque Rhone",
+   "city": "Lyon",
+   "employer": "Northwind Logistics",
+   "first": "Alice",
+   "food": "shellfish",
+   "manager": "Dana Ruiz",
+   "manager_email": "dana.ruiz@northwind.example",
+   "name": "Alice Martin"
+  },
+  "principal": "u-alice"
+ },
+ "pack-en-02": {
+  "entries": [
+   {
+    "content": "Leeds",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "home_city",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Brightfield Health",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "employer",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "priya.shah@brightfield.example",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "manager_email",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Pennine Building Society",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "bank",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Marcus reports to Priya Shah, the clinical operations lead.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Marcus is vegetarian and does not eat meat.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "Marcus prefers meetings before 11:00.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Marcus prefers an aisle seat on long flights.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Marcus likes concise bullet-point summaries.",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "In October Marcus led the rota redesign workshop with Priya Shah.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "agent_inference"
+   },
+   {
+    "content": "Marcus's running club meets on Saturday mornings at Roundhay Park.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "Brightfield's travel policy requires economy class under 6 hours.",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "document"
+   },
+   {
+    "content": "Marcus renewed his passport in August.",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   }
+  ],
+  "lang": "en",
+  "persona": {
+   "bank": "Pennine Building Society",
+   "city": "Leeds",
+   "employer": "Brightfield Health",
+   "first": "Marcus",
+   "food": "meat",
+   "manager": "Priya Shah",
+   "manager_email": "priya.shah@brightfield.example",
+   "name": "Marcus Webb"
+  },
+  "principal": "u-marcus"
+ },
+ "pack-ja-01": {
+  "entries": [
+   {
+    "content": "大阪",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "home_city",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "北辰商事",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "employer",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "yamamoto.ken@hokushin.example",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "manager_email",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "なにわ銀行",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "bank",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "佐藤さんの上司は営業企画部の山本健さん。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "佐藤さんはエビのアレルギーがある。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "佐藤さんは出張では直行便を好む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "佐藤さんは新幹線では窓側の席を好む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "佐藤さんは朝の打ち合わせでは緑茶を飲む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "9月14日、佐藤さんは山本さんに第3四半期の営業報告を発表した。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "agent_inference"
+   },
+   {
+    "content": "佐藤さんのチームの定例会議は木曜10時に変更された。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "北辰商事の出張規定では宿泊費の上限は1泊1万5千円。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "document"
+   },
+   {
+    "content": "佐藤さんは12月3日に歯科の予約を入れた。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   }
+  ],
+  "lang": "ja",
+  "persona": {
+   "bank": "なにわ銀行",
+   "city": "大阪",
+   "employer": "北辰商事",
+   "first": "佐藤",
+   "food": "エビ",
+   "manager": "山本健",
+   "manager_email": "yamamoto.ken@hokushin.example",
+   "name": "佐藤美咲"
+  },
+  "principal": "u-sato"
+ },
+ "pack-ja-02": {
+  "entries": [
+   {
+    "content": "札幌",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "home_city",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "白樺ソフト",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "employer",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "kobayashi.megumi@shirakaba.example",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "manager_email",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "北星信用金庫",
+    "entry_class": "fact",
+    "sealed": true,
+    "slot": "bank",
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "田中さんの上司は開発部の小林恵さん。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "田中さんは菜食主義で肉を食べない。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_explicit"
+   },
+   {
+    "content": "田中さんは午前中の会議を好む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "田中さんは飛行機では通路側の席を好む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "田中さんは箇条書きの短い要約を好む。",
+    "entry_class": "preference",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "10月、田中さんは小林さんと一緒にリリース手順の見直し会を進行した。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "agent_inference"
+   },
+   {
+    "content": "田中さんのランニング仲間は土曜の朝に大通公園で集まる。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   },
+   {
+    "content": "白樺ソフトの規定では6時間未満のフライトはエコノミー。",
+    "entry_class": "fact",
+    "sealed": false,
+    "slot": null,
+    "source_class": "document"
+   },
+   {
+    "content": "田中さんは8月にパスポートを更新した。",
+    "entry_class": "episode",
+    "sealed": false,
+    "slot": null,
+    "source_class": "user_conversation"
+   }
+  ],
+  "lang": "ja",
+  "persona": {
+   "bank": "北星信用金庫",
+   "city": "札幌",
+   "employer": "白樺ソフト",
+   "first": "田中",
+   "food": "肉",
+   "manager": "小林恵",
+   "manager_email": "kobayashi.megumi@shirakaba.example",
+   "name": "田中翔"
+  },
+  "principal": "u-tanaka"
+ }
+}
