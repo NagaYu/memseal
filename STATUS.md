@@ -91,3 +91,13 @@ rejected accounting). W1 false positives on clean cases = 0. Security is strong 
 real: injection 0.775→0.20, leak C0 22 → C2+ 0 (M8 sealed by Fix 1, M7 by W3),
 identifier-subset delayed-use C0 0.219 → C3 0.0.
 See `reports/phase2-regate.md`, `reports/phase2_regate_scores.json`. **Audit Errata** in phase2-regate.md corrects the precision-FP attribution (clean W1 FP = 0; 12/16 FP are D-34 rejected), the clean-retention framing (small 18-marker sample, condition-neutral, not a matching artifact), and a recall typo (0.46 → 0.5625).
+
+## Phase 3 — published
+
+Published (evaluation only, All Rights Reserved):
+- GitHub (source, tests, dev bench, reports): https://github.com/NagaYu/memseal
+- Hugging Face dataset (dev split only; holdout excluded): https://huggingface.co/datasets/NagaYu/memseal-bench
+- Hugging Face static results Space: https://huggingface.co/spaces/NagaYu/memseal-demo
+
+GATE 2 remains self-reported FAIL. Independent holdout corpora are not published (only
+aggregate numbers are reported). Licensing / acquisition: https://nagayu-portfolio.nagayu.workers.dev/en
