@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Phase 2 local run artifacts (large traces/checkpoints kept out of VCS by default)
+/reports/phase2-runs/checkpoints/

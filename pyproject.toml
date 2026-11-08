@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "memseal"
+version = "0.1.0"
+description = "Provenance-tracking containment layer for AI agent long-term memory (Phase 1: offline, deterministic, no LLM)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+memseal = "memseal.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["memseal*", "memseal_phase2*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
