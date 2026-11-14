@@ -75,7 +75,7 @@ Evaluation order (D-05): shape validation → **W3** → **W4** → **W2** → *
 | W2 | derived entry: tier = worst ancestor; claims of `user_explicit`/`user_conversation` or `sealed`, or unknown ancestors | `quarantined` |
 | W3 | `principal != store.principal`, or derived from another principal's entries (D-07) | `rejected`, content withheld (hash only) |
 | W4 | secret shape anywhere in content | content redacted, then evaluated normally (D-04) |
-| W5 | slot fact whose normalised value contradicts an active sealed fact of the same slot; only a non-derived `user_explicit` write may overwrite (supersede) | `review` |
+| W5 | slot fact whose normalised value contradicts an active sealed fact of the same slot (slot names are compared after NFKC + strip, so `"home_city "` / NBSP / tab denote the same slot — D-41); only a non-derived `user_explicit` write may overwrite (supersede) | `review` |
 
 Every outcome is appended to `audit.jsonl`; non-active outcomes go to
 `quarantine.jsonl` (W1/W2/W3) or `review.jsonl` (W5) with reason codes.

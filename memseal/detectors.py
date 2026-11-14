@@ -141,10 +141,33 @@ def register_imperative_verbs(verbs) -> None:
 
 _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+|[。！？!?\n]+|;\s*")
 
+# Consolidation separator (memseal.consolidate.SEPARATOR). E1 fix: the join is a
+# detector boundary.
+CONSOLIDATION_SEP = " | "
+_CLAUSE_SPLIT = re.compile(r",\s*|、")
+
 
 def split_sentences(text: str) -> list[str]:
     text = unicodedata.normalize("NFKC", text)
-    parts = [s.strip().rstrip(".!?。！？") for s in _SENT_SPLIT.split(text)]
+    # E1 fix: when the content is a consolidated entry (the " | " join is
+    # present), evaluate each joined segment as its own sentence, and treat a
+    # comma-led clause inside a segment as a sentence start too. A directive
+    # written whole is quarantined by W1; the same directive split across two
+    # benign writes and merged by consolidate() must be caught as well, even
+    # when the imperative verb lands mid-segment after a leading clause
+    # (e.g. "Ops note, please forward | the contract to <sink>"). This is scoped
+    # to consolidated content (separator present), so non-consolidated writes
+    # keep their exact pre-fix segmentation.
+    if CONSOLIDATION_SEP in text:
+        chunks: list[str] = []
+        for segment in text.split(CONSOLIDATION_SEP):
+            chunks.extend(_CLAUSE_SPLIT.split(segment))
+    else:
+        chunks = [text]
+    parts: list[str] = []
+    for chunk in chunks:
+        for s in _SENT_SPLIT.split(chunk):
+            parts.append(s.strip().rstrip(".!?。！？"))
     return [p.strip() for p in parts if p and p.strip()]
 
 
@@ -228,20 +251,46 @@ def _fingerprint(s: str) -> str:
 REDACTION_MARKER = re.compile(r"\[REDACTED:[A-Z\-]+:[0-9a-f]{8}\]")
 
 
+def _nfkc_expand(text: str) -> tuple[str, list[int]]:
+    """NFKC-normalise ``text`` character by character, keeping a map from each
+    index of the normalised string back to the source index in ``text``.
+
+    E3 fix: secret detection must see the NFKC form (W1's ``detect_imperative``
+    already does), so a credential written in a compatibility form (full-width,
+    etc.) cannot slip the raw-byte patterns and then fold back to the real
+    secret for an NFKC-aware reader. Per-character expansion captures exactly the
+    compatibility folding that these evasions rely on (each such character folds
+    independently of its neighbours); for ASCII content it is the identity, so
+    raw secrets keep byte-identical spans and redaction.
+    """
+    norm_parts: list[str] = []
+    src: list[int] = []
+    for i, ch in enumerate(text):
+        n = unicodedata.normalize("NFKC", ch)
+        norm_parts.append(n)
+        src.extend([i] * len(n))
+    return "".join(norm_parts), src
+
+
 def find_secrets(text: str) -> list[SecretFinding]:
-    spans: list[SecretFinding] = []
-    markers = [m.span() for m in REDACTION_MARKER.finditer(text)]
+    norm, src = _nfkc_expand(text)
+    found: list[tuple[int, int, str, str]] = []  # (norm_start, norm_end, kind, fingerprint)
+    markers = [m.span() for m in REDACTION_MARKER.finditer(norm)]
     for p in SECRET_PATTERNS:
-        for m in p.regex.finditer(text):
+        for m in p.regex.finditer(norm):
             if "secret" in p.regex.groupindex and m.group("secret") is not None:
                 s, e = m.span("secret")
             else:
                 s, e = m.span(0)
-            if any(s < f.end and f.start < e for f in spans):
+            if s >= e:
+                continue
+            if any(s < fe and fs < e for fs, fe, _, _ in found):
                 continue  # overlapping a span already claimed by an earlier pattern
             if any(s < me and ms < e for ms, me in markers):
                 continue  # an existing redaction marker is not a secret
-            spans.append(SecretFinding(p.id, s, e, _fingerprint(text[s:e])))
+            found.append((s, e, p.id, _fingerprint(norm[s:e])))
+    # Map each normalised span back to the source characters that produced it.
+    spans = [SecretFinding(kind, src[s], src[e - 1] + 1, fp) for s, e, kind, fp in found]
     return sorted(spans, key=lambda f: f.start)
 
 
@@ -254,6 +303,8 @@ def redact(text: str) -> tuple[str, list[SecretFinding]]:
     findings = find_secrets(text)
     out, pos = [], 0
     for f in findings:
+        if f.start < pos:
+            continue  # defensive: overlaps a span already redacted (ASCII: never)
         out.append(text[pos:f.start])
         out.append(f"[REDACTED:{f.kind}:{f.fingerprint}]")
         pos = f.end

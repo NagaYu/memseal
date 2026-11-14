@@ -57,6 +57,21 @@ def normalize_value(text: str) -> str:
     return t.rstrip(" .。!！?？")
 
 
+def normalize_slot(slot: str | None) -> str | None:
+    """Slot-name identity for W5 (A1 fix, DECISIONS.md D-39).
+
+    Two slot names denote the *same slot* when they are equal after NFKC + strip
+    (leading/trailing whitespace removed). This aligns W5's "same slot" test with
+    guarded recall, which already matches NFKC over content + slot name. Without
+    it, a contradicting fact written to ``"home_city "`` / ``"home_city "`` /
+    ``"home_city\t"`` bypasses W5 yet is surfaced by recall next to the sealed
+    value.
+    """
+    if slot is None:
+        return None
+    return unicodedata.normalize("NFKC", slot).strip()
+
+
 @dataclass
 class WriteResult:
     disposition: str
@@ -185,7 +200,9 @@ class WritePolicy:
         conflicts: list[str] = []
         if slot and entry_class == "fact":
             sup = self.store.superseded_ids(envs)
-            sealed_in_slot = [e for e in envs if e.sealed and e.slot == slot
+            slot_key = normalize_slot(slot)
+            sealed_in_slot = [e for e in envs if e.sealed and e.slot is not None
+                              and normalize_slot(e.slot) == slot_key
                               and e.principal == principal and e.entry_id not in sup]
             conflicts = [e.entry_id for e in sealed_in_slot
                          if normalize_value(e.content) != normalize_value(red_content)]
